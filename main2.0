@@ -1,0 +1,35 @@
+import mysql.connector as connection
+con=connection.connect(host="localhost",user="root",database="ananda",password="password")
+def execute(q):
+    cursor=con.cursor()
+    cursor.execute(q)
+    con.commit()
+def test(q):
+    cursor=con.cursor()
+    cursor.execute(q)
+    cursor.execute(q)
+    data= cursor.fetchall()
+    for i in data:
+        print(i)
+def  INSERT(ID,Name,Title,Doj):
+    values_query='''
+    INSERT INTO Employees
+    values
+    (%s,%s,%s,%s);'''%(ID,Name,Title,Doj)
+#########################################################
+initial_query='''
+CREATE TABLE Employees
+EmployeeID int primary key,
+Employee_Name varchar(20),
+Title varchar (15),
+DOJ date;
+'''
+execute(initial_query)
+#########################################################
+ID="TEST"
+Name="TEST"
+Title="TEST"
+Doj="TEST"
+
+
+
